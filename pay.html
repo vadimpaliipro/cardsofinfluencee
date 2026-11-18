@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Оплата · Карты влияния</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#110D0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#110D0A; --panel:#1A1410; --panel-2:#221A14; --parch:#F2E8D3; --parch-2:#FBF6EA;
+  --gold:#D4AF37; --gold-2:#E0BE5A; --gold-hi:#F3D77A;
+  --ink:#F7EEDB; --ink-2:#D9CCB2; --ink-3:#B8A98C;
+  --dark:#1C150F; --dark-2:#4A3B2B; --label:#7A5A12; --pline:#CDB98E;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:Manrope, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --gl:max(16px, env(safe-area-inset-left, 0px)); --gr:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:500 16px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+a{color:var(--gold-2)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gr) 0 var(--gl)}
+.head{padding:max(14px,env(safe-area-inset-top)) 0 120px;background:radial-gradient(900px 400px at 80% 0%,rgba(212,175,55,.14),transparent 60%),var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
+.logo{font:700 22px/1 var(--serif);text-decoration:none;color:var(--ink)}
+.logo span{color:var(--ink-3);font:600 13px/1 var(--sans);margin-left:6px}
+.secure{font-size:13px;font-weight:700;color:var(--ink-3);white-space:nowrap}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0 18px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.steps span{padding:8px 12px;border-radius:999px;border:1px solid rgba(212,175,55,.3);color:var(--ink-3)}
+.steps span.on{background:var(--gold);border-color:var(--gold);color:#1a1100}
+h1{font:700 clamp(34px,6vw,58px)/1.02 var(--serif)}
+h1 em{font-style:normal;color:var(--gold-2)}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-top:-88px;padding-bottom:48px;align-items:start}
+.card{background:var(--parch-2);color:var(--dark);border-radius:22px;border:1px solid var(--pline);box-shadow:0 24px 60px -24px rgba(0,0,0,.6);padding:clamp(20px,3vw,32px)}
+.card h2{font:700 26px/1.1 var(--serif);margin-bottom:6px}
+.sub{color:var(--dark-2);font-size:14px;margin-bottom:20px}
+.methods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.m{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--parch);font-weight:700;font-size:14px;line-height:1.2}
+.m i{font-style:normal;font-size:18px}
+.m small{display:block;font-weight:600;color:var(--dark-2);font-size:12px;margin-top:2px}
+.gcw{min-height:420px}
+.gcw iframe{display:block;width:100%;border:0;min-height:420px}
+.gcw-load{padding:40px 0;text-align:center;color:var(--dark-2);font-weight:700}
+.legal{font-size:12px;color:var(--dark-2);text-align:center;margin-top:12px;line-height:1.45}
+.legal a,.card a{color:var(--label)}
+.order{position:sticky;top:16px}
+.order .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--label);margin-bottom:10px}
+.order h3{font:700 26px/1.1 var(--serif);margin-bottom:4px}
+.order .by{color:var(--dark-2);font-size:14px;margin-bottom:16px}
+.inc{list-style:none;border-top:1px solid var(--pline);padding-top:12px;margin-bottom:16px}
+.inc li{display:flex;gap:10px;padding:5px 0;font-size:15px;color:var(--dark-2)}
+.inc li::before{content:"✓";color:var(--label);font-weight:900}
+.sum{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-top:1px solid var(--pline);padding-top:14px}
+.sum .old{color:var(--dark-2);font-size:14px}
+.sum .now{font:700 40px/1 var(--serif);color:var(--dark)}
+.timer{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:14px;background:var(--dark);color:var(--ink)}
+.timer b{font:800 18px/1 var(--sans);color:var(--gold-hi);font-variant-numeric:tabular-nums}
+.timer span{font-size:13px;color:var(--ink-3)}
+.trust{display:grid;gap:8px;margin-top:16px}
+.trust div{font-size:14px;color:var(--dark-2)}
+footer{padding:22px 0 40px;color:var(--ink-3);font-size:12px;line-height:1.6;text-align:center}
+footer a{color:var(--ink-3)}
+@media (max-width:820px){
+  .grid{grid-template-columns:1fr;margin-top:-96px}
+  .order{position:static;order:-1}
+  .methods{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header class="head">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="./">Карты влияния<span>· Вадим Палий</span></a>
+      <div class="secure">🔒 Защищённая оплата</div>
+    </div>
+    <div class="steps"><span>1 · Выбор</span><span class="on">2 · Оплата</span><span>3 · Доступ</span></div>
+    <h1>Остался один шаг <em>до&nbsp;интенсива</em></h1>
+  </div>
+</header>
+<main class="wrap grid">
+  <section class="card">
+    <h2>Куда отправить доступ</h2>
+    <p class="sub">Чек придёт на почту, доступ к урокам — в Telegram-бот.</p>
+    <div class="methods">
+      <div class="m"><i>💳</i><div>Карта РФ<small>Мир, Visa, MC</small></div></div>
+      <div class="m"><i>⚡</i><div>СБП<small>в один тап</small></div></div>
+      <div class="m"><i>🌍</i><div>Карта другой страны<small>Visa, Mastercard</small></div></div>
+      <div class="m"><i>🧩</i><div>Частями<small>Сплит, Долями</small></div></div>
+    </div>
+    <div id="gcw" class="gcw"><div class="gcw-load">Загружаем форму…</div></div>
+    <p class="legal">Оплачивая, вы принимаете условия <a href="https://vadimpalii.pro/oferta" target="_blank" rel="noopener">публичной оферты</a>.<br>Читать: <a href="https://vadimpalii.pro/consent" target="_blank" rel="noopener">согласие</a> · <a href="https://vadimpalii.pro/privacy" target="_blank" rel="noopener">политика</a>. Способ оплаты выберете на следующем шаге.</p>
+  </section>
+  <aside class="card order">
+    <div class="eyebrow">Ваш заказ</div>
+    <h3>Онлайн-интенсив «Карты влияния»</h3>
+    <p class="by">Авторская методология Вадима Палий</p>
+    <ul class="inc">
+      <li>7 видеоуроков и 15 карт приёмов</li>
+      <li>AI-ассистент с практическими заданиями</li>
+      <li>Тренажёр ловушек и тест «Ваша сильная колода»</li>
+      <li>Бонус: PDF «5 колод на одном листе»</li>
+      <li>Бонус: ранний доступ к новому акту игры Golden Stone</li>
+      <li>Доступ на 12 месяцев</li>
+    </ul>
+    <div class="sum">
+      <div class="old">Обычная цена<br><s>15 000 ₽</s></div>
+      <div class="now" data-price>1 490 ₽</div>
+    </div>
+    <div class="timer"><span>Цена действует ещё</span><b id="t">00:00:00</b></div>
+    <div class="trust">
+      <div>🔒 Оплата через GetCourse и ЮKassa — данные карты нам не видны</div>
+      <div>🧾 Электронный чек по 54-ФЗ на почту</div>
+      <div>💬 Поддержка в боте: напишите «помощь»</div>
+    </div>
+  </aside>
+</main>
+<footer class="wrap">
+  ИП Пак Диана Валериановна · ИНН 302502015806 · ОГРНИП 321302500024762<br>
+  <a href="https://vadimpalii.pro/oferta">Оферта</a> · <a href="https://vadimpalii.pro/privacy">Политика</a> · <a href="https://vadimpalii.pro/consent">Согласие</a>
+</footer>
+<script>
+/* ВИДЖЕТЫ GETCOURSE: цена → id виджета и ключ */
+var W={
+  '1490':{id:'1686113',key:'2bbc303827c536ee092fb95fd2695614cffb3e2b'},
+  '1990':{id:'1686114',key:'07f57d47f162ad423cdb8d8ba60fdfa0bb3bef47'}
+};
+var DEFAULT_PRICE='1990';
+(function(){
+  var q=new URLSearchParams(location.search);
+  var t=q.get('t')||DEFAULT_PRICE; if(!W[t])t=DEFAULT_PRICE;
+  var price=t.replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽';
+  document.querySelectorAll('[data-price]').forEach(function(e){e.textContent=price});
+  document.title='Оплата '+price+' · Карты влияния';
+  var p=new URLSearchParams();
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){if(q.get(k))p.set(k,q.get(k))});
+  var cid=q.get('cid');
+  if(cid&&/^[0-9a-f-]{20,}$/i.test(cid)){p.set('utm_content',cid);if(!p.get('utm_source'))p.set('utm_source','bot')}
+  if(!p.get('utm_source'))p.set('utm_source',location.hostname.split('.')[0]);
+  try{if(localStorage.getItem('kv_consent')==='1')p.set('pd','1')}catch(e){}
+  var w=W[t],box=document.getElementById('gcw');
+  var f=document.createElement('iframe');
+  f.name='gcw'+w.id; f.title='Форма оплаты'; f.allow='payment'; f.setAttribute('allowfullscreen','allowfullscreen');
+  f.src='https://platform2learn.ru/pl/lite/widget/widget?'+p.toString()+'&id='+w.id+'&ref='+encodeURIComponent(document.referrer)+'&loc='+encodeURIComponent(location.href);
+  f.onload=function(){var l=box.querySelector('.gcw-load');if(l)l.remove()};
+  box.appendChild(f);
+  window.addEventListener('message',function(e){if(!e.data||e.data.uniqName!==w.key)return;if(e.data.height)f.style.height=e.data.height+'px'});
+  function tick(){var n=new Date(),e=new Date(n);e.setHours(23,59,59,999);var s=Math.max(0,Math.floor((e-n)/1000));
+    var h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),x=String(s%60).padStart(2,'0');
+    document.getElementById('t').textContent=h+':'+m+':'+x}
+  tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

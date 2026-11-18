@@ -711,9 +711,9 @@ section{position:relative}
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A5A12" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Доступ на 12 месяцев</li>
         </ul>
         <label class="agree"><input type="checkbox" data-consent><span>Даю <a href="https://vadimpalii.pro/consent" target="_blank" rel="noopener">согласие</a> на обработку персональных данных</span></label>
-        <div class="buy"><a href="https://t.me/vadim_palii_bot" class="btn btn-dark" data-buy="price" aria-disabled="true"><span>Участвовать за&nbsp;<span data-price>1 490 ₽</span></span></a></div>
+        <div class="buy"><a href="pay.html" class="btn btn-dark" data-buy="price" aria-disabled="true"><span>Участвовать за&nbsp;<span data-price>1 490 ₽</span></span></a></div>
         <div class="hint-agree" id="hintAgree" aria-live="polite"></div>
-        <p class="legal">Нажимая кнопку, вы принимаете условия <a href="https://vadimpalii.pro/oferta" target="_blank" rel="noopener">публичной оферты</a>. Оплата российскими картами или зарубежными Visa / Mastercard. Первый урок приходит в Telegram сразу после оплаты.</p>
+        <p class="legal">Нажимая кнопку, вы принимаете условия <a href="https://vadimpalii.pro/oferta" target="_blank" rel="noopener">публичной оферты</a>. Оплата российскими картами или зарубежными Visa / Mastercard. Уроки приходят в Telegram-бот, старт — 22 ноября в 18:00 Мск.</p>
       </div>
     </div>
   </div>
@@ -759,7 +759,7 @@ section{position:relative}
 <div class="sbar" id="sbar" aria-hidden="true">
   <div class="wrap">
     <div class="pr"><s data-old>15 000 ₽</s><b data-price>1 490 ₽</b><span class="tl">ещё <b class="timer" data-timer style="font-size:15px">00:00:00</b></span></div>
-    <a href="https://t.me/vadim_palii_bot" class="btn btn-gold" data-buy="sticky" tabindex="-1">Участвовать</a>
+    <a href="pay.html" class="btn btn-gold" data-buy="sticky" tabindex="-1">Участвовать</a>
   </div>
 </div>
 
@@ -770,7 +770,7 @@ section{position:relative}
     <h3 id="mcT">Последний шаг</h3>
     <p>Отметьте галочку — и переходим к оплате</p>
     <label class="agree"><input type="checkbox" data-consent><span>Даю <a href="https://vadimpalii.pro/consent" target="_blank" rel="noopener">согласие</a> на обработку персональных данных</span></label>
-    <a href="https://t.me/vadim_palii_bot" class="btn btn-gold" data-buy="modal" aria-disabled="true">Перейти к оплате</a>
+    <a href="pay.html" class="btn btn-gold" data-buy="modal" aria-disabled="true">Перейти к оплате</a>
     <p class="legal">Оплачивая, вы принимаете условия <a href="https://vadimpalii.pro/oferta" target="_blank" rel="noopener">публичной оферты</a></p>
   </div>
 </div>
@@ -806,7 +806,6 @@ var CONFIG = {
   price: 1990,                 // цена дня, ₽
   oldPrice: 15000,             // зачёркнутая цена, ₽
   bot: 'https://t.me/vadim_palii_bot',
-  startBuy: 'kv_site_1990',    // старт-параметр для оплаты: сайт + цена
   startTest: 'kv_test_1990',   // старт-параметр для теста
   metrika: 0                   // номер счётчика Яндекс Метрики (0 — выключено)
 };
@@ -824,7 +823,9 @@ var CONFIG = {
   document.querySelectorAll('[data-price]').forEach(function(e){e.textContent=fmt(CONFIG.price)+' ₽'});
   document.querySelectorAll('[data-price-short]').forEach(function(e){e.textContent=fmt(CONFIG.price)});
   document.querySelectorAll('[data-old]').forEach(function(e){e.textContent=fmt(CONFIG.oldPrice)+' ₽'});
-  var buyUrl=CONFIG.bot+'?start='+encodeURIComponent(CONFIG.startBuy);
+  var qs=new URLSearchParams(location.search),pq=new URLSearchParams();pq.set('t',CONFIG.price);
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','cid'].forEach(function(k){if(qs.get(k))pq.set(k,qs.get(k))});
+  var buyUrl='pay.html?'+pq.toString();
   var testUrl=CONFIG.bot+'?start='+encodeURIComponent(CONFIG.startTest);
   document.querySelectorAll('[data-buy]').forEach(function(a){a.href=buyUrl});
   document.getElementById('testBtn').href=testUrl;
@@ -941,7 +942,6 @@ var CONFIG = {
     paid=true;goal('click_participate');
     if(kind==='modal')setTimeout(function(){closeM(document.getElementById('mConsent'))},300);
   })});
-  document.querySelectorAll('[data-buy]').forEach(function(a){a.target='_blank';a.rel='noopener'});
 
   /* видеоотзывы */
   document.querySelectorAll('[data-yt]').forEach(function(b){b.addEventListener('click',function(){
