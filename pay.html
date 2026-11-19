@@ -138,8 +138,10 @@ var DEFAULT_PRICE='1990';
   var p=new URLSearchParams();
   ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){if(q.get(k))p.set(k,q.get(k))});
   var cid=q.get('cid');
-  if(cid&&/^[0-9a-f-]{20,}$/i.test(cid)){p.set('utm_content',cid);if(!p.get('utm_source'))p.set('utm_source','bot')}
+  if(cid&&/^[0-9a-f-]{20,}$/i.test(cid)){p.set('utm_content',cid);p.set('utm_term',cid);if(!p.get('utm_source'))p.set('utm_source','bot')}
   if(!p.get('utm_source'))p.set('utm_source',location.hostname.split('.')[0]);
+  /* GetCourse берёт UTM из адреса страницы (loc) — кладём их в адресную строку */
+  try{var u=new URL(location.href);p.forEach(function(v,k){u.searchParams.set(k,v)});history.replaceState(null,'',u.toString())}catch(e){}
   try{if(localStorage.getItem('kv_consent')==='1')p.set('pd','1')}catch(e){}
   var w=W[t],box=document.getElementById('gcw');
   var f=document.createElement('iframe');
