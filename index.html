@@ -838,7 +838,7 @@ var CONFIG = {
   document.querySelectorAll('[data-price-short]').forEach(function(e){e.textContent=fmt(CONFIG.price)});
   document.querySelectorAll('[data-old]').forEach(function(e){e.textContent=fmt(CONFIG.oldPrice)+' ₽'});
   var qs=new URLSearchParams(location.search),pq=new URLSearchParams();pq.set('t',CONFIG.price);
-  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','cid'].forEach(function(k){if(qs.get(k))pq.set(k,qs.get(k))});
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','cid'].forEach(function(k){if(qs.get(k))pq.set(k,qs.get(k))});try{var _c=qs.get('cid')||localStorage.getItem('kv_cid');if(_c){pq.set('cid',_c);localStorage.setItem('kv_cid',_c)}}catch(e){}
   var buyUrl='pay.html?'+pq.toString();
   var testUrl=CONFIG.bot+'?start='+encodeURIComponent(CONFIG.startTest);
   document.querySelectorAll('[data-buy]').forEach(function(a){a.href=buyUrl});
